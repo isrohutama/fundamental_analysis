@@ -54,7 +54,7 @@ class Fundamental_Analysis:
         
         ## self.fin_dates start index
         self.fin_dates_start = 0
-        for idx, val in enumerate(self.fin_years):
+        for idx, val in enumerate(self.fin_dates):
             if start_year in val:
                 self.fin_dates_start = idx
                 break
