@@ -474,11 +474,27 @@ out_md = md_image(out_md, fn + '.png')
 
 ## Price related
 
-pe, pfcf, peg, ticker_date = fa.get_valuation()
+price,pe, pfcf, peg, ticker_date = fa.get_valuation()
 
+print('price: ' + str(price[-1]))
 print('P/E: ' + str(pe[-1]))
 print('P/FCF: ' + str(pfcf[-1]))
 print('PEG: ' + str(peg[-1]))
+
+fn = 'Price'
+fig = plt.figure(dpi=150, figsize=(15, 5))
+ax1 = plt.axes()
+ax1.plot(ticker_date, price)
+ax1.set_xlabel('Date')
+ax1.set_ylabel('USD')
+ax1.set_title(fn)
+ax1.grid()
+ax2 = ax1.twinx()
+ax2.plot(ticker_date, ((price / price[0]) - 1) * 100)
+ax2.set_ylabel('%')
+plt.savefig(out_dir + fn + '.png', bbox_inches='tight')
+plt.close()
+out_md = md_image(out_md, fn + '.png')
 
 fn = 'PE Ratio (TTM)'
 fig = plt.figure(dpi=150, figsize=(15, 5))

@@ -91,6 +91,7 @@ class Fundamental_Analysis:
         ttm_fcf = ttm_net + ttm_depamor + ttm_assliachg + ttm_ppe + ttm_intax
         ttm_fcf_ps = [val / shareout[idx] for idx, val in enumerate(ttm_fcf.tolist())]
         #
+        p = np.zeros(len(self.ticker_dates))
         pe = np.zeros(len(self.ticker_dates))
         pfcf = np.zeros(len(self.ticker_dates))
         peg = np.zeros(len(self.ticker_dates))
@@ -101,6 +102,7 @@ class Fundamental_Analysis:
             last_eps = [ttm_eps[idx2] for idx2, date2_obj in enumerate(eps_date_obj) if (date2_obj <= date1)]
             last_fcf_ps = [ttm_fcf_ps[idx2] for idx2, date2_obj in enumerate(eps_date_obj) if (date2_obj <= date1)]
             last_net = [ttm_net[idx2] for idx2, date2_obj in enumerate(eps_date_obj) if (date2_obj <= date1)]
+            p[idx1] = self.ticker_prices[idx1]
             if len(last_eps) >= 4:
                 pe[idx1] = self.ticker_prices[idx1] / last_eps[-1]
                 pfcf[idx1] = self.ticker_prices[idx1] / last_fcf_ps[-1]
@@ -114,7 +116,11 @@ class Fundamental_Analysis:
                 peg[idx1] = pe[idx1] / growth_ttm
             else:
                 peg[idx1] = 0
-        return pe[self.ticker_start:], pfcf[self.ticker_start:], peg[self.ticker_start:], ticker_date_obj[self.ticker_start:]
+        return p[self.ticker_start:], \
+               pe[self.ticker_start:], \
+               pfcf[self.ticker_start:], \
+               peg[self.ticker_start:], \
+               ticker_date_obj[self.ticker_start:]
     
     '''
     ann = 'sum' or 'last'
