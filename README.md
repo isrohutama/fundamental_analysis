@@ -1,6 +1,8 @@
 # fundamental_analysis
 
-This simple code is used to compute and display financial information of a company over time from its financial statements that are extracted from Macrotrends. This code also computes some share price ratios. The price data is taken from yahoo finance.
+This simple code is used to compute and display financial information of a company over time from its financial statements that are extracted from Macrotrends. This code also computes some share price ratios. The price data is taken from yahoo finance.  
+
+<img src="output_example.gif" alt="output_example" width="1024"/>
 
 ## Tested Environment
 - Python 3.8 and other packages in anaconda 2020.11
