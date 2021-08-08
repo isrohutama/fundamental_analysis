@@ -6,7 +6,7 @@ This simple code is used to compute and display financial information of a compa
 
 ## Tested Environment
 - Python 3.8 and other packages in anaconda 2020.11
-- yfinance 0.1.55
+- yfinance 0.1.63
 
 ## How to use
 1. Open "run.py" and modify all required information under "REQUIRED USER INPUTS".
