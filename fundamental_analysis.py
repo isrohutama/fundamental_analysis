@@ -32,7 +32,7 @@ class Fundamental_Analysis:
         print(self.df_cash_flow['field_name'])
         
         ## Rearrange the columns
-        cols = list(self.df_income_statement.columns)
+        cols = list(self.df_income_statement.columns)  # these contain dates
         new_cols = cols[1:][::-1]  # [::-1] is for reversing the order
         new_cols.insert(0, cols[0])
         #
@@ -79,21 +79,22 @@ class Fundamental_Analysis:
                 self.ticker_start = idx
                 break
     
-    def get_valuation(self):
+    def get_price_ratios(self):
         _, ttm_eps, eps_date, _, _ = self.get_fin_state_data('EPS - Earnings Per Share', 'sum', ttm=True, all_dates=True)
         _, ttm_net, _, _, _ = self.get_fin_state_data('Net Income', 'sum', ttm=True, all_dates=True)
         shareout, _, _, _, _ = self.get_fin_state_data('Shares Outstanding', 'last', ttm=False, all_dates=True)
-        _, ttm_depamor, _, _, _ = self.get_fin_state_data('Total Depreciation And Amortization - Cash Flow', 'sum', ttm=True, all_dates=True)
-        _, ttm_assliachg, _, _, _ = self.get_fin_state_data('Total Change In Assets/Liabilities', 'sum', ttm=True, all_dates=True)
+        _, ttm_cfo, _, _, _ = self.get_fin_state_data('Cash Flow From Operating Activities', 'sum', ttm=True, all_dates=True)
         _, ttm_ppe, _, _, _ = self.get_fin_state_data('Net Change In Property, Plant, And Equipment', 'sum', ttm=True, all_dates=True)
-        _, ttm_intax, _, _, _ = self.get_fin_state_data('Income Taxes', 'sum', ttm=True, all_dates=True)
+        _, ttm_rev, _, _, _ = self.get_fin_state_data('Revenue', 'sum', ttm=True, all_dates=True)
         #
-        ttm_fcf = ttm_net + ttm_depamor + ttm_assliachg + ttm_ppe + ttm_intax
+        ttm_fcf = ttm_cfo + ttm_ppe
         ttm_fcf_ps = [val / shareout[idx] for idx, val in enumerate(ttm_fcf.tolist())]
+        ttm_rev_ps = [val / shareout[idx] for idx, val in enumerate(ttm_rev.tolist())]
         #
         p = np.zeros(len(self.ticker_dates))
         pe = np.zeros(len(self.ticker_dates))
         pfcf = np.zeros(len(self.ticker_dates))
+        prev = np.zeros(len(self.ticker_dates))
         peg = np.zeros(len(self.ticker_dates))
         #
         eps_date_obj = [datetime.strptime(date, '%Y-%m-%d') for date in eps_date]
@@ -101,14 +102,17 @@ class Fundamental_Analysis:
         for idx1, date1 in enumerate(ticker_date_obj):
             last_eps = [ttm_eps[idx2] for idx2, date2_obj in enumerate(eps_date_obj) if (date2_obj <= date1)]
             last_fcf_ps = [ttm_fcf_ps[idx2] for idx2, date2_obj in enumerate(eps_date_obj) if (date2_obj <= date1)]
+            last_rev_ps = [ttm_rev_ps[idx2] for idx2, date2_obj in enumerate(eps_date_obj) if (date2_obj <= date1)]
             last_net = [ttm_net[idx2] for idx2, date2_obj in enumerate(eps_date_obj) if (date2_obj <= date1)]
             p[idx1] = self.ticker_prices[idx1]
             if len(last_eps) >= 4:
                 pe[idx1] = self.ticker_prices[idx1] / last_eps[-1]
                 pfcf[idx1] = self.ticker_prices[idx1] / last_fcf_ps[-1]
+                prev[idx1] = self.ticker_prices[idx1] / last_rev_ps[-1]
             else:
                 pe[idx1] = 0
                 pfcf[idx1] = 0
+                prev[idx1] = 0
             if len(last_eps) >= 8:
                 growth_ttm1 = last_net[-1]
                 growth_ttm2 = last_net[-5]
@@ -119,6 +123,7 @@ class Fundamental_Analysis:
         return p[self.ticker_start:], \
                pe[self.ticker_start:], \
                pfcf[self.ticker_start:], \
+               prev[self.ticker_start:], \
                peg[self.ticker_start:], \
                ticker_date_obj[self.ticker_start:]
     

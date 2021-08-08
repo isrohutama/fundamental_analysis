@@ -151,7 +151,7 @@ ttm_rev_chg[0] = 0.
 ann_rev_chg = (ann_rev - np.roll(ann_rev, 1)) / np.roll(ann_rev, 1)
 ann_rev_chg[0] = 0.
 #
-fn = 'Revenue Change (TTM)'
+fn = 'Revenue Change (TTM, Compared to Prev. Q)'
 fig = plt.figure(dpi=150, figsize=(15, 5))
 ax = plt.axes()
 ax.bar(rev_date, ttm_rev_chg*100)
@@ -474,11 +474,12 @@ out_md = md_image(out_md, fn + '.png')
 
 ## Price related
 
-price,pe, pfcf, peg, ticker_date = fa.get_valuation()
+price,pe, pfcf, prev, peg, ticker_date = fa.get_price_ratios()
 
 print('price: ' + str(price[-1]))
 print('P/E: ' + str(pe[-1]))
 print('P/FCF: ' + str(pfcf[-1]))
+print('P/S: ' + str(prev[-1]))
 print('PEG: ' + str(peg[-1]))
 
 fn = 'Price'
@@ -500,6 +501,18 @@ fn = 'PE Ratio (TTM)'
 fig = plt.figure(dpi=150, figsize=(15, 5))
 ax = plt.axes()
 ax.plot(ticker_date, pe)
+ax.set_xlabel('Date')
+ax.set_ylabel('USD')
+ax.set_title(fn)
+ax.grid()
+plt.savefig(out_dir + fn + '.png', bbox_inches='tight')
+plt.close()
+out_md = md_image(out_md, fn + '.png')
+
+fn = 'P - S Ratio (TTM)'
+fig = plt.figure(dpi=150, figsize=(15, 5))
+ax = plt.axes()
+ax.plot(ticker_date, prev)
 ax.set_xlabel('Date')
 ax.set_ylabel('USD')
 ax.set_title(fn)
