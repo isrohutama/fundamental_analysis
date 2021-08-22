@@ -41,21 +41,21 @@ class Fundamental_Analysis:
         self.df_cash_flow = self.df_cash_flow[new_cols]
         
         ## Get the financial dates
-        self.fin_dates = list(self.df_income_statement.columns[1:])
+        self.fin_dates = [datetime.strptime(date, '%Y-%m-%d') for date in list(self.df_income_statement.columns[1:])]
         
         ## Get the years and their corresponding dates
         self.fin_y2d = OrderedDict()
-        for val in self.fin_dates:
-            cur_year = val[:4]
+        for date in self.fin_dates:
+            cur_year = date.year
             if not (cur_year in self.fin_y2d.keys()):
                 self.fin_y2d[cur_year] = list()
-            self.fin_y2d[cur_year].append(val)
+            self.fin_y2d[cur_year].append(date)
         self.fin_years = [key for key in self.fin_y2d.keys()]
         
         ## self.fin_dates start index
         self.fin_dates_start = 0
         for idx, val in enumerate(self.fin_dates):
-            if start_year in val:
+            if start_year == val.year:
                 self.fin_dates_start = idx
                 break
         
@@ -70,12 +70,12 @@ class Fundamental_Analysis:
         ticker_data = yf.Ticker(ticker_symbol)
         self.df_ticker = ticker_data.history(period='1d', start=self.fin_dates[0], end=datetime.now())
         #
-        self.ticker_dates = [str(date)[:10] for date in self.df_ticker.index]
+        self.ticker_dates = [date.to_pydatetime() for date in self.df_ticker.index]
         self.ticker_prices = self.df_ticker['Close'].to_numpy(dtype=float).flatten()
         #
         self.ticker_start = 0
-        for idx, val in enumerate(self.ticker_dates):
-            if start_year in val:
+        for idx, date in enumerate(self.ticker_dates):
+            if start_year == date.year:
                 self.ticker_start = idx
                 break
     
@@ -97,13 +97,11 @@ class Fundamental_Analysis:
         prev = np.zeros(len(self.ticker_dates))
         peg = np.zeros(len(self.ticker_dates))
         #
-        eps_date_obj = [datetime.strptime(date, '%Y-%m-%d') for date in eps_date]
-        ticker_date_obj = [datetime.strptime(date, '%Y-%m-%d') for date in self.ticker_dates]
-        for idx1, date1 in enumerate(ticker_date_obj):
-            last_eps = [ttm_eps[idx2] for idx2, date2_obj in enumerate(eps_date_obj) if (date2_obj <= date1)]
-            last_fcf_ps = [ttm_fcf_ps[idx2] for idx2, date2_obj in enumerate(eps_date_obj) if (date2_obj <= date1)]
-            last_rev_ps = [ttm_rev_ps[idx2] for idx2, date2_obj in enumerate(eps_date_obj) if (date2_obj <= date1)]
-            last_net = [ttm_net[idx2] for idx2, date2_obj in enumerate(eps_date_obj) if (date2_obj <= date1)]
+        for idx1, date1 in enumerate(self.ticker_dates):
+            last_eps = [ttm_eps[idx2] for idx2, date2_obj in enumerate(eps_date) if (date2_obj <= date1)]
+            last_fcf_ps = [ttm_fcf_ps[idx2] for idx2, date2_obj in enumerate(eps_date) if (date2_obj <= date1)]
+            last_rev_ps = [ttm_rev_ps[idx2] for idx2, date2_obj in enumerate(eps_date) if (date2_obj <= date1)]
+            last_net = [ttm_net[idx2] for idx2, date2_obj in enumerate(eps_date) if (date2_obj <= date1)]
             p[idx1] = self.ticker_prices[idx1]
             if len(last_eps) >= 4:
                 pe[idx1] = self.ticker_prices[idx1] / last_eps[-1]
@@ -125,7 +123,7 @@ class Fundamental_Analysis:
                pfcf[self.ticker_start:], \
                prev[self.ticker_start:], \
                peg[self.ticker_start:], \
-               ticker_date_obj[self.ticker_start:]
+               self.ticker_dates[self.ticker_start:]
     
     '''
     ann = 'sum' or 'last'
@@ -152,9 +150,9 @@ class Fundamental_Analysis:
         for idx, year in enumerate(self.fin_y2d):
             if ann == 'sum':
                 for date in self.fin_y2d[year]:
-                    ann_fn[idx] += float(df_fn[date].values[0])
+                    ann_fn[idx] += float(df_fn[date.strftime('%Y-%m-%d')].values[0])
             elif ann == 'last':
-                ann_fn[idx] = float(df_fn[self.fin_y2d[year][-1]].values[0])
+                ann_fn[idx] = float(df_fn[self.fin_y2d[year][-1].strftime('%Y-%m-%d')].values[0])
         #
         if all_dates:
             fin_dates_start = 0
