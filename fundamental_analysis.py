@@ -50,6 +50,8 @@ class Fundamental_Analysis:
             if not (cur_year in self.fin_y2d.keys()):
                 self.fin_y2d[cur_year] = list()
             self.fin_y2d[cur_year].append(date)
+        if len(self.fin_y2d[cur_year]) < 4:
+            self.fin_y2d[cur_year] = self.fin_dates[-4:]
         self.fin_years = [key for key in self.fin_y2d.keys()]
         
         ## self.fin_dates start index
