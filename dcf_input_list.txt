@@ -1,3 +1,13 @@
+## Amazon 20211029 --> undervalued (4231 - Net)
+cf = 29438  # in millions (FCF=7067, OCF=59323, Net=29438)
+debt = 106576  # short + long term debt, in millions
+cash = 89894  # cash and short term investment, in millions
+growth_y1_y5 = 37.13  # in percent (from yfinance)
+growth_y6_y10 = 18.5  # in percent
+growth_y11_y20 = 1.72  # in percent (ave US GDP growth in trailing 20y = 1.72)
+shr_out = 506  # share outstanding, in millions
+dr = 7.71  # discount rate, in percent (beta=1.16, risk free rate= 1.33%, market risk premium = 5.5%)
+
 ## Veeva 20210907 --> overvalued (162.69)
 cf = 761.204  # in millions (FCF=761.204, OCF=761.204)
 debt = 58.735  # short + long term debt, in millions

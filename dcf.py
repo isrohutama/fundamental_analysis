@@ -2,7 +2,7 @@
 20 years discounted cash flow.
 It is developed by watching DCF computation videos by Adam Khoo.
 In his videos, the CF used is the operating CF, but 
-the free CF can be used instead to be more conservative.
+the free CF can be used instead to be more conservative, or Net income.
 '''
 
 ##########################################
@@ -39,15 +39,15 @@ average market risk premium = 6.6%
     >1.6    11%
 ''' 
 
-## Alphabet 20210905 --> undervalued (3750.04)
-cf = 58536  # in millions (FCF=58536, OCF=80859)
-debt = 27984  # short + long term debt, in millions
-cash = 135863  # cash and short term investment, in millions
-growth_y1_y5 = 24.41  # in percent (from yfinance)
-growth_y6_y10 = 12.2  # in percent
+## Amazon 20211029 --> undervalued (4231 - Net)
+cf = 29438  # in millions (FCF=7067, OCF=59323, Net=29438)
+debt = 106576  # short + long term debt, in millions
+cash = 89894  # cash and short term investment, in millions
+growth_y1_y5 = 37.13  # in percent (from yfinance)
+growth_y6_y10 = 18.5  # in percent
 growth_y11_y20 = 1.72  # in percent (ave US GDP growth in trailing 20y = 1.72)
-shr_out = 667.637  # share outstanding, in millions
-dr = 7.  # discount rate, in percent (beta=1, risk free rate= 1.33%, market risk premium = 5.5%)
+shr_out = 506  # share outstanding, in millions
+dr = 7.71  # discount rate, in percent (beta=1.16, risk free rate= 1.33%, market risk premium = 5.5%)
 
 ##########################################
 ############ PROCESSING CODE #############
