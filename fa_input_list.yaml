@@ -1,0 +1,21 @@
+Alphabet:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'GOOGL'
+  start_year: 2016
+  ##
+  output_prefix: 'alphabet'
+
+Facebook:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/FB/facebook/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/FB/facebook/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/FB/facebook/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'FB'
+  start_year: 2016
+  ##
+  output_prefix: 'facebook'

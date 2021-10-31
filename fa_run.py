@@ -1,28 +1,26 @@
-##########################################
-########## REQUIRED USER INPUTS ##########
-##########################################
-
-## links from macrotrends
-income_statement = 'https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/income-statement?freq=Q'
-balance_sheet = 'https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/balance-sheet?freq=Q'
-cash_flow = 'https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/cash-flow-statement?freq=Q'
-
-## needed information to retrieve data from yfinance
-ticker_symbol = 'GOOGL'
-start_year = 2016
-
-output_prefix = 'alphabet'
-
-##########################################
-############ PROCESSING CODE #############
-##########################################
-
+import argparse
+import yaml
 from fa import Fundamental_Analysis
 import matplotlib.pyplot as plt 
 import numpy as np
 
 from datetime import datetime
 import os
+
+## Retrieve company name from user input
+parser = argparse.ArgumentParser()
+parser.add_argument('company_name', type=str, help='Company name as in fa_input_list.yaml')
+args = parser.parse_args()
+
+## Retrieve required input data from dcf_input_list.yaml
+with open('fa_input_list.yaml', 'r') as f:
+    data = yaml.safe_load(f)
+income_statement = data[args.company_name]['income_statement']
+balance_sheet = data[args.company_name]['balance_sheet']
+cash_flow = data[args.company_name]['cash_flow']
+ticker_symbol = data[args.company_name]['ticker_symbol']
+start_year = data[args.company_name]['start_year']
+output_prefix = data[args.company_name]['output_prefix']
 
 ## create output directory
 dt_now = datetime.now()
