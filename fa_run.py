@@ -17,7 +17,7 @@ output_prefix = 'alphabet'
 ############ PROCESSING CODE #############
 ##########################################
 
-from fundamental_analysis import Fundamental_Analysis
+from fa import Fundamental_Analysis
 import matplotlib.pyplot as plt 
 import numpy as np
 

@@ -11,8 +11,8 @@ This repo contains:
 - yfinance 0.1.63
 
 ## How to use fundamental anaysis code
-1. Open "run.py" and modify all required information under "REQUIRED USER INPUTS".
-2. Run "run.py".
+1. Open "fa_run.py" and modify all required information under "REQUIRED USER INPUTS".
+2. Run "fa_run.py".
 3. The result will be inside a folder named "output/..." where "..." is "output_prefix" in step 1 and followed by current date-time.
 4. Open "0_fundamental_analysis.md" with browser (tested on firefox).
 
