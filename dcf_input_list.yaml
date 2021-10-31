@@ -1,0 +1,150 @@
+##############################################################
+# discount rate = risk free rate + beta * market risk premium
+# risk free rate --> usually from 10 year treasury rate
+#
+# US stocks (from Adam Khoo's video)
+# risk free rate = 0.64%
+# average market risk premium = 5%
+#     Beta    Discount Rate
+#     <0.9    4.6%
+#     1       5.6%
+#     1.1     6.1%
+#     1.2     6.6%
+#     1.3     7.1%
+#     1.4     7.6%
+#     1.5     8.1%
+#     >1.6    8.6%
+#
+# China/HK stocks (from Adam Khoo's video)
+# risk free rate = 0.6%
+# average market risk premium = 6.6%
+#     Beta    Discount Rate
+#     <0.9    5.9%
+#     1       7%
+#     1.1     7.9%
+#     1.2     9%
+#     1.3     9.2%
+#     1.4     10%
+#     1.5     10.5%
+#     >1.6    11%
+##############################################################
+
+Amazon:
+  date: '2021-10-20'
+  fcf: 7067.  # free cash flow, in millions
+  ocf: 59323.  # operating cash flow, in millions
+  net: 29438.  # net income, in millions
+  debt: 106576.  # short + long term debt, in millions
+  cash: 89894.  # cash and short term investment, in millions
+  growth_y1_y5: 37.13  # in percent (from yfinance)
+  growth_y6_y10: 18.5  # in percent
+  growth_y11_y20: 1.72  # in percent (ave US GDP growth in trailing 20y = 1.72)
+  shr_out: 530.  # share outstanding, in millions
+  dr: 7.71  # discount rate, in percent (beta=1.16, risk free rate= 1.33%, market risk premium = 5.5%)
+
+Veeva:
+  date: '2021-09-07'
+  fcf: 761.204  # free cash flow, in millions
+  ocf: 761.204  # operating cash flow, in millions
+  debt: 58.735  # short + long term debt, in millions
+  cash: 2263  # cash and short term investment, in millions
+  growth_y1_y5: 15.50  # in percent (from yfinance)
+  growth_y6_y10: 7.5  # in percent
+  growth_y11_y20: 1.72  # in percent (ave US GDP growth in trailing 20y = 1.72)
+  shr_out: 152.8  # share outstanding, in millions
+  dr: 5.29  # discount rate, in percent (beta=0.72, risk free rate= 1.33%, market risk premium = 5.5%)
+
+Nvidia:
+  date: '2021-09-07'
+  fcf: 6665.  # free cash flow, in millions
+  ocf: 7902.  # operating cash flow, in millions
+  debt: 12791  # short + long term debt, in millions
+  cash: 19654  # cash and short term investment, in millions
+  growth_y1_y5: 32.6  # in percent (from yfinance)
+  growth_y6_y10: 16.  # in percent
+  growth_y11_y20: 1.72  # in percent (ave US GDP growth in trailing 20y = 1.72)
+  shr_out: 2496  # share outstanding, in millions
+  dr: 8.9  # discount rate, in percent (beta=1.36, risk free rate= 1.33%, market risk premium = 5.5%)
+
+Square:
+  date: '2021-09-07'
+  fcf: 682.779  # free cash flow, in millions
+  ocf: 831.248  # operating cash flow, in millions
+  debt: 6131  # short + long term debt, in millions
+  cash: 8443  # cash and short term investment, in millions
+  growth_y1_y5: 53.  # in percent (from yfinance)
+  growth_y6_y10: 26.  # in percent
+  growth_y11_y20: 1.72  # in percent (ave US GDP growth in trailing 20y = 1.72)
+  shr_out: 458  # share outstanding, in millions
+  dr: 15.  # discount rate, in percent (beta=2.42, risk free rate= 1.33%, market risk premium = 5.5%)
+
+Alibaba:
+  date: '2021-09-07'
+  fcf: 26649  # free cash flow, in millions
+  ocf: 33336  # operating cash flow, in millions
+  debt: 23321  # short + long term debt, in millions
+  cash: 74843  # cash and short term investment, in millions
+  growth_y1_y5: 30.  # in percent
+  growth_y6_y10: 15.  # in percent
+  growth_y11_y20: 6.85  # in percent (ave China GDP growth in trailing 10y = 6.85)
+  shr_out: 2710  # share outstanding, in millions
+  dr: 10.  # discount rate, in percent (beta=0.79, risk free rate= 2.84%, market risk premium = 8%)
+
+Crowdstrike:
+  date: '2021-09-05'
+  fcf: 364.247  # free cash flow, in millions
+  ocf: 458.972  # operating cash flow, in millions
+  debt: 777.524  # short + long term debt, in millions
+  cash: 1787.051  # cash and short term investment, in millions
+  growth_y1_y5: 66.9  # in percent (from yfinance)
+  growth_y6_y10: 33.  # in percent
+  growth_y11_y20: 1.72  # in percent (ave US GDP growth in trailing 20y = 1.72)
+  shr_out: 228.152  # share outstanding, in millions
+  dr: 8.1  # discount rate, in percent (beta=1.23, risk free rate= 1.33%, market risk premium = 5.5%)
+
+Alphabet:
+  date: '2021-09-05'
+  fcf: 58536  # free cash flow, in millions
+  ocf: 80859  # operating cash flow, in millions
+  debt: 27984  # short + long term debt, in millions
+  cash: 135863  # cash and short term investment, in millions
+  growth_y1_y5: 24.41  # in percent (from yfinance)
+  growth_y6_y10: 12.2  # in percent
+  growth_y11_y20: 1.72  # in percent (ave US GDP growth in trailing 20y = 1.72)
+  shr_out: 667.637  # share outstanding, in millions
+  dr: 7.  # discount rate, in percent (beta=1, risk free rate= 1.33%, market risk premium = 5.5%)
+
+Facebook:
+  date: '2021-09-05'
+  fcf: 32172  # free cash flow, in millions
+  ocf: 49358  # operating cash flow, in millions
+  debt: 12007  # short + long term debt, in millions
+  cash: 64080  # cash and short term investment, in millions
+  growth_y1_y5: 28.6  # in percent (from yfinance)
+  growth_y6_y10: 14.3  # in percent
+  growth_y11_y20: 1.72  # in percent (ave US GDP growth in trailing 20y = 1.72)
+  shr_out: 2826.  # share outstanding, in millions
+  dr: 8.5  # discount rate, in percent (beta=1.29, risk free rate= 1.33%, market risk premium = 5.5%)
+
+Microsoft:
+  date: '2021-09-05'
+  fcf: 56118  # free cash flow, in millions
+  ocf: 76740  # operating cash flow, in millions
+  debt: 67775  # short + long term debt, in millions
+  cash: 130334  # cash and short term investment, in millions
+  growth_y1_y5: 15.25  # in percent (from yfinance)
+  growth_y6_y10: 7.5  # in percent
+  growth_y11_y20: 1.72  # in percent (ave US GDP growth in trailing 20y = 1.72)
+  shr_out: 7519.  # share outstanding, in millions
+  dr: 5.7  # discount rate, in percent (beta=0.78, risk free rate= 1.33%, market risk premium = 5.5%)
+
+Microsoft_Test:  # Adam Khoo video - For verification (passed!!!)
+  date: '2021-08'
+  ocf: 72703  # operating cash flow, in millions
+  debt: 58058  # short + long term debt, in millions
+  cash: 125013  # cash and short term investment, in millions
+  growth_y1_y5: 15.  # in percent
+  growth_y6_y10: 7.5  # in percent
+  growth_y11_y20: 4.18  # in percent
+  shr_out: 7531.6  # share outstanding, in millions
+  dr: 5.6  # discount rate, in percent
