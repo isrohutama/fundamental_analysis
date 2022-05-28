@@ -19,3 +19,47 @@ Facebook:
   start_year: 2016
   ##
   output_prefix: 'facebook'
+
+Microsoft:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/MSFT/microsoft/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/MSFT/microsoft/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/MSFT/microsoft/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'MSFT'
+  start_year: 2016
+  ##
+  output_prefix: 'microsoft'
+
+Amazon:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/AMZN/amazon/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/AMZN/amazon/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/AMZN/amazon/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'AMZN'
+  start_year: 2016
+  ##
+  output_prefix: 'amazon'
+
+Alibaba:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/BABA/alibaba/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/BABA/alibaba/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/BABA/alibaba/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'BABA'
+  start_year: 2016
+  ##
+  output_prefix: 'alibaba'
+
+Nvidia:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/NVDA/nvidia/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/NVDA/nvidia/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/NVDA/nvidia/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'NVDA'
+  start_year: 2016
+  ##
+  output_prefix: 'nvidia'
