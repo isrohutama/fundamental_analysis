@@ -208,10 +208,16 @@ out_md = chart_multi_bar(rev_date_str, [ttm_gpm*100, ttm_npm*100], 'Date', '%', 
 ## Revenue Change
 ttm_rev_chg = (ttm_rev - np.roll(ttm_rev, 1)) / np.roll(ttm_rev, 1)
 ttm_rev_chg[0] = 0.
+ttm_rev_chg4 = (ttm_rev - np.roll(ttm_rev, 4)) / np.roll(ttm_rev, 4)
+ttm_rev_chg4[0] = 0.
+ttm_rev_chg4[1] = 0.
+ttm_rev_chg4[2] = 0.
+ttm_rev_chg4[3] = 0.
 ann_rev_chg = (ann_rev - np.roll(ann_rev, 1)) / np.roll(ann_rev, 1)
 ann_rev_chg[0] = 0.
 #
 out_md = chart_bar(rev_date_str, ttm_rev_chg * 100, 'Date', '%', 'Revenue Change (TTM, Compared to Prev. Q)', out_md)
+out_md = chart_bar(rev_date_str, ttm_rev_chg4 * 100, 'Date', '%', 'Revenue Change (TTM, Compared to Last Year)', out_md)
 out_md = chart_bar(rev_year, ann_rev_chg * 100, 'Date', '%', 'Revenue Change (Ann)', out_md)
 
 ## Total Assets and Total Liabilities
