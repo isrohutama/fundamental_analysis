@@ -1,4 +1,4 @@
-import requests
+import urllib
 from bs4 import BeautifulSoup as bs
 import re
 import json
@@ -72,7 +72,7 @@ class Fundamental_Analysis:
         ticker_data = yf.Ticker(ticker_symbol)
         self.df_ticker = ticker_data.history(period='1d', start=self.fin_dates[0], end=datetime.now())
         #
-        self.ticker_dates = [date.to_pydatetime() for date in self.df_ticker.index]
+        self.ticker_dates = [date.tz_localize(None).to_pydatetime() for date in self.df_ticker.index]
         self.ticker_prices = self.df_ticker['Close'].to_numpy(dtype=float).flatten()
         #
         self.ticker_start = 0
@@ -182,9 +182,18 @@ class Fundamental_Analysis:
     '''
     @staticmethod
     def mt_to_pd(link):
-        r = requests.get(link)
+        # Get the webpage content
+        # https://stackoverflow.com/questions/74446830/how-to-fix-403-forbidden-errors-with-python-requests-even-with-user-agent-head
+        req = urllib.request.Request(link)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0')
+        req.add_header('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8')
+        req.add_header('Accept-Language', 'en-US,en;q=0.5')
+        r = urllib.request.urlopen(req).read().decode('utf-8')
+        # with open("test.html", 'w', encoding="utf-8") as f:
+        #     f.write(r)
+
         p = re.compile(r' var originalData = (.*?);\r\n\r\n\r',re.DOTALL)
-        data = json.loads(p.findall(r.text)[0])
+        data = json.loads(p.findall(r)[0])
         headers = list(data[0].keys())
         headers.remove('popup_icon')
         result = []
