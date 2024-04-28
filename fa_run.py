@@ -194,16 +194,24 @@ net, ttm_net, _, ann_net, _ = fa.get_fin_state_data('Net Income', 'sum', ttm=Tru
 out_md = chart_bar_and_percentage(rev_date_str, net, 'Date', 'Million USD', 'Net Profit (Q)', out_md)
 out_md = chart_bar_and_percentage(rev_date_str, ttm_net, 'Date', 'Million USD', 'Net Profit (TTM)', out_md)
 
+## Research And Development Expenses
+rnd, ttm_rnd, _, ann_rnd, _ = fa.get_fin_state_data('Research And Development Expenses', 'sum', ttm=True)
+out_md = chart_bar_and_percentage(rev_date_str, rnd, 'Date', 'Million USD', 'Research And Development Expenses (Q)', out_md)
+out_md = chart_bar_and_percentage(rev_date_str, ttm_rnd, 'Date', 'Million USD', 'Research And Development Expenses (TTM)', out_md)
+
 ## Gross Profit Margin, Net Profit Margin
 gpm = gross / rev
 npm = net / rev
+rndm = rnd / rev
 ttm_gpm = ttm_gross / ttm_rev
 ttm_npm = ttm_net / ttm_rev
+ttm_rndm = ttm_rnd / ttm_rev
 ann_gpm = ann_gross / ann_rev
 ann_npm = ann_net / ann_rev
+ann_rndm = ann_rnd / ann_rev
 #
-out_md = chart_multi_bar(rev_date_str, [gpm*100, npm*100], 'Date', '%', ['GPM', 'NPM'], 'Gross Profit Margin, Net Profit Margin (Q)', out_md)
-out_md = chart_multi_bar(rev_date_str, [ttm_gpm*100, ttm_npm*100], 'Date', '%', ['GPM', 'NPM'], 'Gross Profit Margin, Net Profit Margin (TTM)', out_md)
+out_md = chart_multi_bar(rev_date_str, [gpm*100, npm*100, rndm*100], 'Date', '%', ['GPM', 'NPM', 'RnDM'], 'Gross Profit Margin, Net Profit Margin, RnD Margin (Q)', out_md)
+out_md = chart_multi_bar(rev_date_str, [ttm_gpm*100, ttm_npm*100, ttm_rndm*100], 'Date', '%', ['GPM', 'NPM', 'RnDM'], 'Gross Profit Margin, Net Profit Margin, RnD Margin (TTM)', out_md)
 
 ## Revenue Change
 ttm_rev_chg = (ttm_rev - np.roll(ttm_rev, 1)) / np.roll(ttm_rev, 1)
