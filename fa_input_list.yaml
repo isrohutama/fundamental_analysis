@@ -1,4 +1,4 @@
-Alphabet:
+alphabet:
   ## links from macrotrends
   income_statement: 'https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/income-statement?freq=Q'
   balance_sheet: 'https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/balance-sheet?freq=Q'
@@ -9,7 +9,7 @@ Alphabet:
   ##
   output_prefix: 'alphabet'
 
-Meta:
+meta:
   ## links from macrotrends
   income_statement: 'https://www.macrotrends.net/stocks/charts/META/meta-platforms/income-statement?freq=Q'
   balance_sheet: 'https://www.macrotrends.net/stocks/charts/META/meta-platforms/balance-sheet?freq=Q'
@@ -20,7 +20,7 @@ Meta:
   ##
   output_prefix: 'meta'
 
-Microsoft:
+microsoft:
   ## links from macrotrends
   income_statement: 'https://www.macrotrends.net/stocks/charts/MSFT/microsoft/income-statement?freq=Q'
   balance_sheet: 'https://www.macrotrends.net/stocks/charts/MSFT/microsoft/balance-sheet?freq=Q'
@@ -31,7 +31,7 @@ Microsoft:
   ##
   output_prefix: 'microsoft'
 
-Amazon:
+amazon:
   ## links from macrotrends
   income_statement: 'https://www.macrotrends.net/stocks/charts/AMZN/amazon/income-statement?freq=Q'
   balance_sheet: 'https://www.macrotrends.net/stocks/charts/AMZN/amazon/balance-sheet?freq=Q'
@@ -42,18 +42,7 @@ Amazon:
   ##
   output_prefix: 'amazon'
 
-Alibaba:
-  ## links from macrotrends
-  income_statement: 'https://www.macrotrends.net/stocks/charts/BABA/alibaba/income-statement?freq=Q'
-  balance_sheet: 'https://www.macrotrends.net/stocks/charts/BABA/alibaba/balance-sheet?freq=Q'
-  cash_flow: 'https://www.macrotrends.net/stocks/charts/BABA/alibaba/cash-flow-statement?freq=Q'
-  ## needed information to retrieve data from yfinance
-  ticker_symbol: 'BABA'
-  start_year: 2016
-  ##
-  output_prefix: 'alibaba'
-
-Nvidia:
+nvidia:
   ## links from macrotrends
   income_statement: 'https://www.macrotrends.net/stocks/charts/NVDA/nvidia/income-statement?freq=Q'
   balance_sheet: 'https://www.macrotrends.net/stocks/charts/NVDA/nvidia/balance-sheet?freq=Q'
@@ -63,3 +52,69 @@ Nvidia:
   start_year: 2016
   ##
   output_prefix: 'nvidia'
+
+tsmc:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/TSM/taiwan-semiconductor-manufacturing/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/TSM/taiwan-semiconductor-manufacturing/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/TSM/taiwan-semiconductor-manufacturing/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'TSM'
+  start_year: 2016
+  ##
+  output_prefix: 'tsmc'
+
+intel:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/INTC/intel/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/INTC/intel/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/INTC/intel/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'INTC'
+  start_year: 2016
+  ##
+  output_prefix: 'intel'
+
+broadcom:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/AVGO/broadcom/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/AVGO/broadcom/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/AVGO/broadcom/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'AVGO'
+  start_year: 2016
+  ##
+  output_prefix: 'broadcom'
+
+novo_nordisk:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/NVO/novo-nordisk/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/NVO/novo-nordisk/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/NVO/novo-nordisk/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'NVO'
+  start_year: 2016
+  ##
+  output_prefix: 'novo_nordisk'
+
+eli_lilly:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/LLY/eli-lilly/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/LLY/eli-lilly/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/LLY/eli-lilly/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'LLY'
+  start_year: 2016
+  ##
+  output_prefix: 'eli_lilly'
+
+pdd:
+  ## links from macrotrends
+  income_statement: 'https://www.macrotrends.net/stocks/charts/PDD/pdd-holdings/income-statement?freq=Q'
+  balance_sheet: 'https://www.macrotrends.net/stocks/charts/PDD/pdd-holdings/balance-sheet?freq=Q'
+  cash_flow: 'https://www.macrotrends.net/stocks/charts/PDD/pdd-holdings/cash-flow-statement?freq=Q'
+  ## needed information to retrieve data from yfinance
+  ticker_symbol: 'PDD'
+  start_year: 2019
+  ##
+  output_prefix: 'pdd_holdings'

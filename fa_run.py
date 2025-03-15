@@ -28,7 +28,7 @@ out_dir = 'output/' + output_prefix + dt_now.strftime('_%Y%m%d_%H%M%S') + '/'
 os.makedirs(out_dir)
 
 ## create string for md file
-out_md_fn = out_dir + '0_fundamental_analysis.md'
+out_md_fn = out_dir + '0_' + args.company_name + '.md'
 out_md = '# ' + output_prefix + '  \n\n'
 
 ## function to write image fn in md file
